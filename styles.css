@@ -1,0 +1,49 @@
+body {
+    width: 90%;
+    max-width: 1172px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+@media (max-width: 665px) {
+	body {border-right-width: 0;}
+}
+
+#top {
+	position: relative;
+	display: flex;
+	height: 103px;
+	margin-top: 20px;
+	margin-bottom: 250px;
+}
+
+#sun {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	left: 480px;
+	width: 100px; 
+	height: 100px;
+}
+
+#circle {
+	position: relative;
+	border-radius: 50%;
+}
+
+#wave {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	width: 580px;
+	height: 100px;
+	border-width: 0px 10px 2px 10px;
+	border-style: solid;
+	border-color: gray;
+	position: relative;
+}
+#wave img {
+	position: absolute;
+	flex-grow: 1
+}

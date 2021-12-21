@@ -30,15 +30,17 @@
 		?>
 	</div>
 
+	<div id="bottom"></div>
+
 	<script type="text/javascript">
 		let count = 0;
 		function clock()
 		{
 			document.getElementById("doc_time").innerHTML = "Вы находитесь на странице секунд: " + Math.floor(count);
-			count ++;
-			setTimeout("clock()", 1000);
+			count += 0.1;
+			/* setTimeout("clock()", 1000); */
 		}
-		clock();
+		/* clock(); */
 
 		let change = 0;
 		function sunrise()
@@ -84,6 +86,8 @@
 				i = 0;
 			}
 			circle.style.background = 'rgb(' + color1 + ', ' + color2 + ', ' + color3 + ')';
+			/* гориз. и верт. смещение тени, радиус размытия, растяжение, цвет (если внутрь - inset) */
+			circle.style.boxShadow = '0px 0px 50px 0px rgb(' + color1 + ', ' + color2 + ', ' + color3 + ')';
 
 			i++;
 		}
@@ -99,12 +103,12 @@
 			<?php
 				for ($i = 1; $i <= 580; $i++) {
 					// задаём шаг волны: 11.2 * 2пи = 70 px, а так же движение волн вперёд:
-					$height = "el$i.style.height = "."90 + j*Math.sin($i/11-k/22) + 'px';";
+					$height = "el$i.style.height = "."110 + j*Math.sin($i/11-k/22) + 'px';";
 					echo $height;
 				}
 			?>
 			if (m == 0 && !(Math.abs(j) < 0.2 && Math.sin(0.15*k) > 0.8 && k > 1500)) {
-				boat.style.bottom = 90 + Math.abs(j) + 'px'; // движение кораблика вверх-вниз
+				boat.style.bottom = 110 + Math.abs(j) + 'px'; // движение кораблика вверх-вниз
 				// максимальная вертикальная скорость 10 px/секунду при setTimeout = 10
 				if (l <= 380) {
 					boat.style.left = l + 'px';  // придадим движение кораблику вперёд
@@ -116,7 +120,7 @@
 			}
 			else if (m <= 130) { // затопим кораблик
 				m++;
-				boat.style.bottom = 90 - 0.57*m + 'px';
+				boat.style.bottom = 108 - 0.7*m + 'px'; // 90 - 0.57*m + 'px'; при height = 90 
 				boat.style.transform = 'rotate(' + 0.3*m + 'deg)';
 			}
 			
@@ -124,7 +128,8 @@
 			l++; // эта переменная обнуляется при возвращении кораблика в исходное положение
 		}
 		
-		let timer = setInterval("wafe(), color(), sunrise()", 100);
+		let timer = setInterval("clock(), wafe(), color(), sunrise()", 100);
+		// или так: setInterval(function() {animate1(); animate2(); animate3(); }, 100);
 	</script>
 
 </body>
